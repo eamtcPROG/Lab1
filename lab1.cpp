@@ -584,6 +584,7 @@ void linkedListMenu(struct Node **list)
             }
             stopProgram = conformationMenu('6');
         }
+        
         break;
         case '9':
         {
