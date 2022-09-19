@@ -31,7 +31,7 @@
 *.out
 *.app
 
-.vscode
+*.vscode
 lab1.dSYM
 lab1
 main
