@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib>
+#include <fstream>
 
 using namespace std;
 
@@ -165,6 +166,7 @@ void linkedListMenuText()
     cout << " 6. - Show list" << endl;
     cout << " 7. - Search element" << endl;
     cout << " 8. - Sort elements" << endl;
+    cout << " s. - Save list in file" << endl;
     cout << " 9. - Exit" << endl;
     cout << "\n----------------------------------------------------" << endl;
 }
@@ -305,9 +307,14 @@ void infoText(char input)
         cout << "\nList is empty";
     }
     break;
+    case 's':
+    {
+        cout << "\nFile saved!";
+    }
+    break;
     default:
     {
-        cout << "\nSorry,you can press only 1,2,3,4 !!!" << endl;
+        cout << "\nSorry,please select another option !!!" << endl;
     }
     }
 }
@@ -454,6 +461,17 @@ struct Node *merge(struct Node *a, struct Node *b)
     return (result);
 }
 
+void saveFile(struct Node *node){
+    ofstream myFile;
+    myFile.open("/repos/lab2/mylist.txt");
+    while (node != NULL)
+    {
+        myFile << node->data << " ";
+        node = node->next;
+    }
+    myFile.close();
+}
+
 void linkedListMenu(struct Node **list)
 {
     int stopProgram = 0;
@@ -584,7 +602,17 @@ void linkedListMenu(struct Node **list)
             }
             stopProgram = conformationMenu('6');
         }
-        
+        case 's':
+        {
+            if(mylist != NULL){
+                saveFile(mylist);
+                infoText('s');
+            }
+            else{
+                infoText('l');
+            }
+            stopProgram = conformationMenu('6');
+        }
         break;
         case '9':
         {
@@ -766,6 +794,8 @@ void linkedListSelect()
         }
     } while (stopProgram != 1);
 }
+
+
 int main()
 {
     int stopProgram = 0;
