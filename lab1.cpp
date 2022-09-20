@@ -472,6 +472,20 @@ void saveFile(struct Node *node){
     myFile.close();
 }
 
+struct Node *inFile(){
+    struct Node *result = NULL;
+    int x;
+    ifstream myFile("/repos/lab2/inlist.txt");
+    while (myFile.eof())
+    {
+        myFile>>x;
+        append(&result,x);
+    }
+    
+    myFile.close();
+    return(result);
+}
+
 void linkedListMenu(struct Node **list)
 {
     int stopProgram = 0;
@@ -817,6 +831,8 @@ int main()
         break;
         case '2':
         {
+            struct Node *mylist = inFile();
+            linkedListMenu(&mylist);   
         }
         break;
         case '3':
